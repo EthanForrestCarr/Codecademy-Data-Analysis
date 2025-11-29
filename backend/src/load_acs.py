@@ -195,6 +195,80 @@ def _load_owner_cost_burden_share(year: int) -> pd.DataFrame:
     return pd.DataFrame.from_records(records)
 
 
+def _load_owner_cost_burden_share_b25070(year: int) -> pd.DataFrame:
+    """Approximate owner cost-burdened share using ACS table B25070.
+
+    This mirrors the logic in `_load_owner_cost_burden_share` but uses
+    B25070 as a quiet cross-check. It is *not* surfaced to the
+    frontend; we only log large discrepancies so you can validate that
+    B25091 and B25070 tell a consistent story.
+    """
+
+    csv_path = _find_table_file(year, "B25070")
+    df = pd.read_csv(csv_path)
+
+    if "Label (Grouping)" not in df.columns:
+        raise KeyError(
+            f"Expected 'Label (Grouping)' column in {csv_path}, found columns: {list(df.columns)}"
+        )
+
+    label_col = "Label (Grouping)"
+
+    total_row = df[df[label_col].astype(str).str.strip() == "Total:"]
+    if total_row.empty:
+        total_row = df.iloc[[0]]
+
+    burden_labels = [
+        "30.0 to 34.9 percent",
+        "35.0 to 39.9 percent",
+        "40.0 to 49.9 percent",
+        "50.0 percent or more",
+    ]
+    burden_rows = df[
+        df[label_col]
+        .astype(str)
+        .str.strip()
+        .isin(burden_labels)
+    ]
+
+    estimate_cols = [c for c in df.columns if c.endswith("!!Estimate")]
+    if not estimate_cols:
+        raise KeyError(
+            f"No '!!Estimate' columns found in {csv_path}; columns: {list(df.columns)}"
+        )
+
+    records = []
+    for col in estimate_cols:
+        geo_name = col.split("!!")[0]
+        total_raw = total_row.iloc[0][col]
+        if pd.isna(total_raw):
+            total_val = None
+        else:
+            total_val = float(str(total_raw).replace(",", "").strip() or 0.0)
+
+        burden_sum = 0.0
+        for _, r in burden_rows.iterrows():
+            raw = r[col]
+            if pd.isna(raw):
+                continue
+            burden_sum += float(str(raw).replace(",", "").strip() or 0.0)
+
+        if not total_val or total_val == 0:
+            share = None
+        else:
+            share = burden_sum / total_val
+
+        records.append(
+            {
+                "year": year,
+                "geo_name": geo_name,
+                "owner_cost_burdened_share_b25070": share,
+            }
+        )
+
+    return pd.DataFrame.from_records(records)
+
+
 def load_acs_affordability(years: List[int] | None = None) -> pd.DataFrame:
     """Load ACS data for the given years and return a tidy affordability DataFrame.
 
@@ -221,10 +295,32 @@ def load_acs_affordability(years: List[int] | None = None) -> pd.DataFrame:
         home_value = _load_single_table(year, "B25077")
         rent = _load_single_table(year, "B25064")
         owner_burden = _load_owner_cost_burden_share(year)
+        owner_burden_b25070 = _load_owner_cost_burden_share_b25070(year)
 
         merged = income.merge(home_value, on=["geo_name", "year"], how="inner")
         merged = merged.merge(rent, on=["geo_name", "year"], how="inner")
         merged = merged.merge(owner_burden, on=["geo_name", "year"], how="left")
+
+        # Quiet cross-check: compare B25091- vs B25070-derived burden.
+        merged = merged.merge(
+            owner_burden_b25070,
+            on=["geo_name", "year"],
+            how="left",
+        )
+
+        if "owner_cost_burdened_share_b25070" in merged.columns:
+            diff = (
+                merged["owner_cost_burdened_share"]
+                - merged["owner_cost_burdened_share_b25070"]
+            ).abs()
+            if (diff > 0.02).any():
+                print(
+                    f"[load_acs] Warning: B25091 vs B25070 burden differs by >2pp in {year}; max diff = {diff.max():.3f}",
+                )
+
+        # Drop the cross-check column so it never reaches the frontend
+        if "owner_cost_burdened_share_b25070" in merged.columns:
+            merged.drop(columns=["owner_cost_burdened_share_b25070"], inplace=True)
 
         frames.append(merged)
 

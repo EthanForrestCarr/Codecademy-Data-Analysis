@@ -53,10 +53,10 @@ From these tables, the backend computes:
 - Price-to-income ratio = median home value / median household income.  
 - Rent-to-income share = (median gross rent × 12) / median household income.
 
-#### HUD Fair Market Rents (planned enhancement)
+#### HUD Fair Market Rents (partial integration)
 
 - **Source:** U.S. Department of Housing and Urban Development (HUD) Fair Market Rents (FMR).  
-- **Status:** Loader is scaffolded in `backend/src/load_hud.py`, but HUD FMR data is not yet surfaced in the live dashboard. This is a natural future enhancement.
+- **Status:** The loader in `backend/src/load_hud.py` currently ingests county-level HUD 2-bedroom FMRs for years where HUD Excel files are readable (roughly 2013–2021) and maps them onto the four ACS geographies (e.g., Hennepin County and Minneapolis share the same metro FMR). These values are exposed in the dataset as `hud_fmr_2br` and visualized in the frontend. Some recent HUD workbooks (notably 2022–2023) have malformed XML and are skipped with a logged warning.
 
 #### Optional local or state data (stretch goals)
 
@@ -84,14 +84,16 @@ The current implementation follows this concrete pipeline:
 		- `median_gross_rent` (from `B25064`).  
 		- `median_household_income` (from `B19013`).  
 		- `price_to_income = median_home_value / median_household_income`.  
-		- `rent_to_income = (median_gross_rent × 12) / median_household_income`.
+		- `rent_to_income = (median_gross_rent × 12) / median_household_income`.  
+		- `owner_cost_burdened_share` (from `B25091`), approximating the share of owner households spending ≥30% of income on housing.  
+		- **HUD 2BR FMR where available** (`hud_fmr_2br`), mapped from county-/metro-level HUD files onto the project geographies.
 
 4. **Prepare data for visualization**  
 	- Use `backend/src/build_affordability_dataset.py` to merge metrics across tables and years.  
 	- Export a single tidy JSON file, `backend/data/processed/housing_affordability_timeseries.json`, with schema:  
 		- `geographies`: list of included geography names.  
 		- `metrics`: list of records, each like:  
-			- `year`, `geo_name`, `median_household_income`, `median_home_value`, `median_gross_rent`, `price_to_income`, `rent_to_income`, `hud_fmr_2br` (optional, currently `null`).  
+			- `year`, `geo_name`, `median_household_income`, `median_home_value`, `median_gross_rent`, `price_to_income`, `rent_to_income`, `owner_cost_burdened_share`, `hud_fmr_2br` (optional where HUD is readable).  
 	- Copy or sync this JSON file into `public/data/housing_affordability_timeseries.json` for the frontend.
 
 5. **Visualize and interpret**  
@@ -199,4 +201,26 @@ npm run dev
 This starts the Vite dev server and serves both the React app and the JSON data. The site can later be built (`npm run build`) and deployed as a static site.
 
 This setup keeps deployment simple enough for a free-tier portfolio project while still demonstrating a realistic separation between **analysis code** and **presentation layer**—a pattern that aligns well with how many government and analytics teams work.
+
+---
+
+## Data Quality & Limitations
+
+Working with real federal datasets means accepting some quirks and documenting tradeoffs. This section summarizes the two main data-quality considerations in the project.
+
+### ACS cost-burden tables (B25070 vs B25091)
+
+- Two ACS tables describe owner housing costs as a share of income:
+	- `B25070` – Selected monthly owner costs as a percentage of household income.
+	- `B25091` – Mortgage status by selected monthly owner costs as a percentage of household income.
+- The dashboard's `owner_cost_burdened_share` metric is derived from `B25091` by summing the 30%+ cost brackets and dividing by the total owner households.
+- In the backend, a quiet cross-check recomputes the same share from `B25070` for each year and geography and logs a warning when the difference between the two tables exceeds 2 percentage points.
+- In practice, the two tables tell a similar qualitative story (which geographies are more vs. less cost-burdened), but the warnings you see in the logs highlight that different ACS universes and table definitions can lead to non-trivial numeric differences. For the sake of a clear narrative, the project uses the `B25091`-based metric consistently and treats `B25070` as a validation check rather than a separate published metric.
+
+### HUD Fair Market Rents (FMR) for 2022–2023
+
+- HUD publishes annual Fair Market Rent workbooks in Excel format. Most years load cleanly with `pandas` + `openpyxl`, but the 2022 and 2023 workbooks used here contain malformed XML metadata.
+- The HUD loader in `backend/src/load_hud.py` attempts to read all configured years and logs a warning when a workbook cannot be parsed. For 2022–2023, those years are skipped rather than failing the entire pipeline.
+- As a result, the `hud_fmr_2br` field is populated for years where HUD files are technically usable (roughly 2013–2021) and is `null` for 2022–2023. The frontend chart is robust to these gaps and simply shows missing HUD lines for the affected years.
+- From a portfolio and interview perspective, this is an example of designing a pipeline that is **resilient to messy real-world data**: the core ACS-based affordability metrics remain intact even when enrichment data (HUD FMRs) is partially unavailable.
 
