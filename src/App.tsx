@@ -4,6 +4,7 @@ import { MedianHomeValueChart } from './components/MedianHomeValueChart'
 import { PriceToIncomeChart } from './components/PriceToIncomeChart'
 import { RentToIncomeChart } from './components/RentToIncomeChart'
 import { OwnerCostBurdenChart } from './components/OwnerCostBurdenChart'
+import { FmrVsRentChart } from './components/FmrVsRentChart'
 
 type AffordabilityMetric = {
   year: number
@@ -113,6 +114,16 @@ function App() {
           considered cost-burdened).
         </p>
         <RentToIncomeChart data={data} geographies={geographies} />
+      </section>
+
+      <section>
+        <h2>HUD Fair Market Rent vs Median Rent</h2>
+        <p>
+          Comparison of HUD&apos;s 2-bedroom Fair Market Rent (FMR) benchmarks to observed
+          median gross rent. Where available, dashed lines show FMR and solid lines
+          show ACS median rent for the same geography.
+        </p>
+        <FmrVsRentChart data={data} geographies={geographies} />
       </section>
 
       <section>

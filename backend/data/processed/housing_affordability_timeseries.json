@@ -14,7 +14,8 @@
       "median_gross_rent": 917.0,
       "owner_cost_burdened_share": 0.2699475715999791,
       "price_to_income": 3.5852367125755014,
-      "rent_to_income": 0.17086160582581555
+      "rent_to_income": 0.17086160582581555,
+      "hud_fmr_2br": 920.0
     },
     {
       "year": 2013,
@@ -24,7 +25,8 @@
       "median_gross_rent": 594.0,
       "owner_cost_burdened_share": 0.2414403163700697,
       "price_to_income": 3.2617797839096423,
-      "rent_to_income": 0.14558526173893507
+      "rent_to_income": 0.14558526173893507,
+      "hud_fmr_2br": 626.0
     },
     {
       "year": 2013,
@@ -34,7 +36,8 @@
       "median_gross_rent": 574.0,
       "owner_cost_burdened_share": 0.18635466591485764,
       "price_to_income": 2.7685010406079087,
-      "rent_to_income": 0.16669086685058807
+      "rent_to_income": 0.16669086685058807,
+      "hud_fmr_2br": 626.0
     },
     {
       "year": 2013,
@@ -44,7 +47,8 @@
       "median_gross_rent": 836.0,
       "owner_cost_burdened_share": 0.30568650559811433,
       "price_to_income": 4.171594667735793,
-      "rent_to_income": 0.20110253583241455
+      "rent_to_income": 0.20110253583241455,
+      "hud_fmr_2br": 920.0
     },
     {
       "year": 2014,
@@ -54,7 +58,8 @@
       "median_gross_rent": 934.0,
       "owner_cost_burdened_share": 0.2529057618972993,
       "price_to_income": 3.4966862977257698,
-      "rent_to_income": 0.17234327187735457
+      "rent_to_income": 0.17234327187735457,
+      "hud_fmr_2br": 946.0
     },
     {
       "year": 2014,
@@ -64,7 +69,8 @@
       "median_gross_rent": 618.0,
       "owner_cost_burdened_share": 0.22304754930166867,
       "price_to_income": 3.181836037239266,
-      "rent_to_income": 0.1456573830380642
+      "rent_to_income": 0.1456573830380642,
+      "hud_fmr_2br": 637.0
     },
     {
       "year": 2014,
@@ -74,7 +80,8 @@
       "median_gross_rent": 589.0,
       "owner_cost_burdened_share": 0.16203836243916403,
       "price_to_income": 2.763418062272197,
-      "rent_to_income": 0.16837792124258522
+      "rent_to_income": 0.16837792124258522,
+      "hud_fmr_2br": 637.0
     },
     {
       "year": 2014,
@@ -84,7 +91,8 @@
       "median_gross_rent": 854.0,
       "owner_cost_burdened_share": 0.28368383422499444,
       "price_to_income": 4.041995784663266,
-      "rent_to_income": 0.20186341521066833
+      "rent_to_income": 0.20186341521066833,
+      "hud_fmr_2br": 946.0
     },
     {
       "year": 2015,
@@ -94,7 +102,8 @@
       "median_gross_rent": 951.0,
       "owner_cost_burdened_share": 0.23409944859220222,
       "price_to_income": 3.481483731810311,
-      "rent_to_income": 0.17334508004982227
+      "rent_to_income": 0.17334508004982227,
+      "hud_fmr_2br": 996.0
     },
     {
       "year": 2015,
@@ -104,7 +113,8 @@
       "median_gross_rent": 656.0,
       "owner_cost_burdened_share": 0.21544004662745722,
       "price_to_income": 3.149049937935644,
-      "rent_to_income": 0.15032941850472645
+      "rent_to_income": 0.15032941850472645,
+      "hud_fmr_2br": 643.0
     },
     {
       "year": 2015,
@@ -114,7 +124,8 @@
       "median_gross_rent": 616.0,
       "owner_cost_burdened_share": 0.15198666296193386,
       "price_to_income": 2.6657849128888076,
-      "rent_to_income": 0.16856699808446593
+      "rent_to_income": 0.16856699808446593,
+      "hud_fmr_2br": 643.0
     },
     {
       "year": 2015,
@@ -124,7 +135,8 @@
       "median_gross_rent": 869.0,
       "owner_cost_burdened_share": 0.2613165927262392,
       "price_to_income": 3.987956487956488,
-      "rent_to_income": 0.20256410256410257
+      "rent_to_income": 0.20256410256410257,
+      "hud_fmr_2br": 996.0
     },
     {
       "year": 2016,
@@ -134,7 +146,8 @@
       "median_gross_rent": 982.0,
       "owner_cost_burdened_share": 0.21735239173875404,
       "price_to_income": 3.468208092485549,
-      "rent_to_income": 0.1733221550544941
+      "rent_to_income": 0.1733221550544941,
+      "hud_fmr_2br": 1027.0
     },
     {
       "year": 2016,
@@ -144,7 +157,8 @@
       "median_gross_rent": 645.0,
       "owner_cost_burdened_share": 0.20464795458163104,
       "price_to_income": 3.16582632003149,
-      "rent_to_income": 0.14507694326254428
+      "rent_to_income": 0.14507694326254428,
+      "hud_fmr_2br": 658.0
     },
     {
       "year": 2016,
@@ -154,7 +168,8 @@
       "median_gross_rent": 599.0,
       "owner_cost_burdened_share": 0.14161220043572983,
       "price_to_income": 2.723136317676257,
-      "rent_to_income": 0.16518062321904586
+      "rent_to_income": 0.16518062321904586,
+      "hud_fmr_2br": 658.0
     },
     {
       "year": 2016,
@@ -164,7 +179,8 @@
       "median_gross_rent": 898.0,
       "owner_cost_burdened_share": 0.24627421758569298,
       "price_to_income": 4.044781509570242,
-      "rent_to_income": 0.20482408621771112
+      "rent_to_income": 0.20482408621771112,
+      "hud_fmr_2br": 1027.0
     },
     {
       "year": 2017,
@@ -174,7 +190,8 @@
       "median_gross_rent": 1031.0,
       "owner_cost_burdened_share": 0.2099082875091889,
       "price_to_income": 3.4488574078758747,
-      "rent_to_income": 0.17387638080782528
+      "rent_to_income": 0.17387638080782528,
+      "hud_fmr_2br": 1086.0
     },
     {
       "year": 2017,
@@ -184,7 +201,8 @@
       "median_gross_rent": 656.0,
       "owner_cost_burdened_share": 0.1987781954887218,
       "price_to_income": 3.097080516844566,
-      "rent_to_income": 0.14265779888004929
+      "rent_to_income": 0.14265779888004929,
+      "hud_fmr_2br": 681.0
     },
     {
       "year": 2017,
@@ -194,7 +212,8 @@
       "median_gross_rent": 629.0,
       "owner_cost_burdened_share": 0.14810126582278482,
       "price_to_income": 2.808455465258966,
-      "rent_to_income": 0.17475863027019517
+      "rent_to_income": 0.17475863027019517,
+      "hud_fmr_2br": 681.0
     },
     {
       "year": 2017,
@@ -204,7 +223,8 @@
       "median_gross_rent": 941.0,
       "owner_cost_burdened_share": 0.23059172977550846,
       "price_to_income": 3.9949748743718594,
-      "rent_to_income": 0.20265613783201722
+      "rent_to_income": 0.20265613783201722,
+      "hud_fmr_2br": 1086.0
     },
     {
       "year": 2018,
@@ -214,7 +234,8 @@
       "median_gross_rent": 1085.0,
       "owner_cost_burdened_share": 0.20425535977393003,
       "price_to_income": 3.5122043366211058,
-      "rent_to_income": 0.17567768137843562
+      "rent_to_income": 0.17567768137843562,
+      "hud_fmr_2br": 1089.0
     },
     {
       "year": 2018,
@@ -224,7 +245,8 @@
       "median_gross_rent": 669.0,
       "owner_cost_burdened_share": 0.20167539267015708,
       "price_to_income": 3.1419019446535157,
-      "rent_to_income": 0.140519157725228
+      "rent_to_income": 0.140519157725228,
+      "hud_fmr_2br": 730.0
     },
     {
       "year": 2018,
@@ -234,7 +256,8 @@
       "median_gross_rent": 651.0,
       "owner_cost_burdened_share": 0.14427600627286985,
       "price_to_income": 2.9247879187609453,
-      "rent_to_income": 0.1776706315813414
+      "rent_to_income": 0.1776706315813414,
+      "hud_fmr_2br": 730.0
     },
     {
       "year": 2018,
@@ -244,7 +267,8 @@
       "median_gross_rent": 985.0,
       "owner_cost_burdened_share": 0.21907551687673962,
       "price_to_income": 3.998779516213788,
-      "rent_to_income": 0.2003627549031241
+      "rent_to_income": 0.2003627549031241,
+      "hud_fmr_2br": 1089.0
     },
     {
       "year": 2019,
@@ -254,7 +278,8 @@
       "median_gross_rent": 1135.0,
       "owner_cost_burdened_share": 0.19687420111283996,
       "price_to_income": 3.5424155973748515,
-      "rent_to_income": 0.17424232732483017
+      "rent_to_income": 0.17424232732483017,
+      "hud_fmr_2br": 1151.0
     },
     {
       "year": 2019,
@@ -264,7 +289,8 @@
       "median_gross_rent": 678.0,
       "owner_cost_burdened_share": 0.20094183398882218,
       "price_to_income": 3.2224532224532223,
-      "rent_to_income": 0.13864558126853208
+      "rent_to_income": 0.13864558126853208,
+      "hud_fmr_2br": 705.0
     },
     {
       "year": 2019,
@@ -274,7 +300,8 @@
       "median_gross_rent": 653.0,
       "owner_cost_burdened_share": 0.18282111899133174,
       "price_to_income": 3.039422900202169,
-      "rent_to_income": 0.18002205476934388
+      "rent_to_income": 0.18002205476934388,
+      "hud_fmr_2br": 705.0
     },
     {
       "year": 2019,
@@ -284,7 +311,8 @@
       "median_gross_rent": 1027.0,
       "owner_cost_burdened_share": 0.21314338345235104,
       "price_to_income": 4.0202610932681395,
-      "rent_to_income": 0.1969224869373472
+      "rent_to_income": 0.1969224869373472,
+      "hud_fmr_2br": 1151.0
     },
     {
       "year": 2020,
@@ -294,7 +322,8 @@
       "median_gross_rent": 1176.0,
       "owner_cost_burdened_share": 0.18812750144718252,
       "price_to_income": 3.598664514777809,
-      "rent_to_income": 0.173859478372285
+      "rent_to_income": 0.173859478372285,
+      "hud_fmr_2br": 1214.0
     },
     {
       "year": 2020,
@@ -304,7 +333,8 @@
       "median_gross_rent": 676.0,
       "owner_cost_burdened_share": 0.20925624872993295,
       "price_to_income": 3.4277448869752423,
-      "rent_to_income": 0.13643702906350916
+      "rent_to_income": 0.13643702906350916,
+      "hud_fmr_2br": 723.0
     },
     {
       "year": 2020,
@@ -314,7 +344,8 @@
       "median_gross_rent": 639.0,
       "owner_cost_burdened_share": 0.24017053529133112,
       "price_to_income": 3.345132328465271,
-      "rent_to_income": 0.17975104901662017
+      "rent_to_income": 0.17975104901662017,
+      "hud_fmr_2br": 723.0
     },
     {
       "year": 2020,
@@ -324,7 +355,8 @@
       "median_gross_rent": 1078.0,
       "owner_cost_burdened_share": 0.20162459768217778,
       "price_to_income": 4.057940303929285,
-      "rent_to_income": 0.19579826845068718
+      "rent_to_income": 0.19579826845068718,
+      "hud_fmr_2br": 1214.0
     },
     {
       "year": 2021,
@@ -334,7 +366,8 @@
       "median_gross_rent": 1244.0,
       "owner_cost_burdened_share": 0.18895744899874653,
       "price_to_income": 3.6189985720639526,
-      "rent_to_income": 0.17472319108593365
+      "rent_to_income": 0.17472319108593365,
+      "hud_fmr_2br": 1308.0
     },
     {
       "year": 2021,
@@ -344,7 +377,8 @@
       "median_gross_rent": 718.0,
       "owner_cost_burdened_share": 0.2053904282115869,
       "price_to_income": 3.2884080079261486,
-      "rent_to_income": 0.13549939453032853
+      "rent_to_income": 0.13549939453032853,
+      "hud_fmr_2br": 734.0
     },
     {
       "year": 2021,
@@ -354,7 +388,8 @@
       "median_gross_rent": 718.0,
       "owner_cost_burdened_share": 0.2419995328194347,
       "price_to_income": 3.203388708716659,
-      "rent_to_income": 0.1900853795750877
+      "rent_to_income": 0.1900853795750877,
+      "hud_fmr_2br": 734.0
     },
     {
       "year": 2021,
@@ -364,7 +399,8 @@
       "median_gross_rent": 1159.0,
       "owner_cost_burdened_share": 0.20084855950181346,
       "price_to_income": 4.057119217107234,
-      "rent_to_income": 0.19840511276908374
+      "rent_to_income": 0.19840511276908374,
+      "hud_fmr_2br": 1308.0
     },
     {
       "year": 2022,
@@ -374,7 +410,8 @@
       "median_gross_rent": 1373.0,
       "owner_cost_burdened_share": 0.18987163168259763,
       "price_to_income": 3.8662994762136185,
-      "rent_to_income": 0.17793617365948486
+      "rent_to_income": 0.17793617365948486,
+      "hud_fmr_2br": null
     },
     {
       "year": 2022,
@@ -384,7 +421,8 @@
       "median_gross_rent": 769.0,
       "owner_cost_burdened_share": 0.21174172218604417,
       "price_to_income": 3.444624209442565,
-      "rent_to_income": 0.13572584203559346
+      "rent_to_income": 0.13572584203559346,
+      "hud_fmr_2br": null
     },
     {
       "year": 2022,
@@ -394,7 +432,8 @@
       "median_gross_rent": 755.0,
       "owner_cost_burdened_share": 0.25337512054001926,
       "price_to_income": 3.3895523000533463,
-      "rent_to_income": 0.1858919118552259
+      "rent_to_income": 0.1858919118552259,
+      "hud_fmr_2br": null
     },
     {
       "year": 2022,
@@ -404,7 +443,8 @@
       "median_gross_rent": 1267.0,
       "owner_cost_burdened_share": 0.20730178627389534,
       "price_to_income": 4.306188754388723,
-      "rent_to_income": 0.19918251847193838
+      "rent_to_income": 0.19918251847193838,
+      "hud_fmr_2br": null
     },
     {
       "year": 2023,
@@ -414,7 +454,8 @@
       "median_gross_rent": 1439.0,
       "owner_cost_burdened_share": 0.19283491966326025,
       "price_to_income": 3.9080746115280416,
-      "rent_to_income": 0.17924205150562078
+      "rent_to_income": 0.17924205150562078,
+      "hud_fmr_2br": null
     },
     {
       "year": 2023,
@@ -424,7 +465,8 @@
       "median_gross_rent": 805.0,
       "owner_cost_burdened_share": 0.198153907896057,
       "price_to_income": 3.560751353790614,
-      "rent_to_income": 0.13622518050541516
+      "rent_to_income": 0.13622518050541516,
+      "hud_fmr_2br": null
     },
     {
       "year": 2023,
@@ -434,7 +476,8 @@
       "median_gross_rent": 839.0,
       "owner_cost_burdened_share": 0.23702975165970003,
       "price_to_income": 3.4070578983583997,
-      "rent_to_income": 0.19793571217929815
+      "rent_to_income": 0.19793571217929815,
+      "hud_fmr_2br": null
     },
     {
       "year": 2023,
@@ -444,7 +487,8 @@
       "median_gross_rent": 1329.0,
       "owner_cost_burdened_share": 0.20793727808040932,
       "price_to_income": 4.305522679988538,
-      "rent_to_income": 0.19868193200363776
+      "rent_to_income": 0.19868193200363776,
+      "hud_fmr_2br": null
     }
   ]
 }

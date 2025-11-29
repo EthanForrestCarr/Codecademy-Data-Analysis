@@ -81,35 +81,78 @@ def load_hud_fmr(years: List[int] | None = None) -> pd.DataFrame:
             print(f"[load_hud] Failed to read HUD workbook for {year}: {path} ({exc})")
             continue
 
-        # TODO: Update these column names after inspecting the file.
-        # Common columns include identifiers for state, county/metro, and
-        # FMRs for 0BR, 1BR, 2BR, etc.
-        # Example placeholders:
-        #   - "CountyName" or "areaname" for geography name
-        #   - "FMR2" or similar for 2-bedroom FMR
-        geo_col_candidates = [c for c in df.columns if "name" in c.lower() or "area" in c.lower()]
-        if not geo_col_candidates:
-            raise KeyError(f"Could not find a plausible geography-name column in HUD file: {path}")
-        geo_col = geo_col_candidates[0]
+        # Prefer concrete, known-good columns when available
+        if "areaname" in df.columns and "fmr_2" in df.columns:
+            geo_col = "areaname"
+            fmr_col = "fmr_2"
+        else:
+            # Fallback: heuristic search for plausible name and 2BR FMR columns
+            geo_col_candidates = [c for c in df.columns if "name" in str(c).lower() or "area" in str(c).lower()]
+            if not geo_col_candidates:
+                print(f"[load_hud] No plausible geography-name column in HUD file: {path}")
+                continue
+            geo_col = geo_col_candidates[0]
 
-        fmr_col_candidates = [c for c in df.columns if "2br" in c.lower() or "2 br" in c.lower() or "fmr2" in c.lower()]
-        if not fmr_col_candidates:
-            raise KeyError(f"Could not find a plausible 2BR FMR column in HUD file: {path}")
-        fmr_col = fmr_col_candidates[0]
+            fmr_col_candidates = [
+                c
+                for c in df.columns
+                if any(k in str(c).lower() for k in ["2br", "2 br", "fmr2", "fmr_2"])
+            ]
+            if not fmr_col_candidates:
+                print(f"[load_hud] No plausible 2BR FMR column in HUD file: {path}")
+                continue
+            fmr_col = fmr_col_candidates[0]
 
-        sub = df[[geo_col, fmr_col]].copy()
-        sub.rename(columns={geo_col: "geo_name", fmr_col: "hud_fmr_2br"}, inplace=True)
+        sub = df[[geo_col, fmr_col, "countyname"]].copy()
+        sub.rename(columns={fmr_col: "hud_fmr_2br"}, inplace=True)
         sub["year"] = year
 
-        # Filter to HUD_TARGET_GEOS by matching name substrings.
-        # You may refine this logic once you've seen actual names.
-        target_patterns = list(HUD_TARGET_GEOS.values())
-        mask = pd.Series(False, index=sub.index)
-        for pattern in target_patterns:
-            mask = mask | sub["geo_name"].astype(str).str.contains(pattern.split(",")[0], case=False, na=False)
-        sub = sub[mask]
+        # Map HUD rows to the ACS geo_name values we actually use.
+        # We duplicate some HUD rows so both county and principal city
+        # in that county can share the same FMR where appropriate.
+        def _expand_to_acs_geos(row: pd.Series) -> list[dict]:
+            acs_rows: list[dict] = []
+            countyname = str(row.get("countyname", ""))
+            base = {
+                "year": row["year"],
+                "hud_fmr_2br": row["hud_fmr_2br"],
+            }
 
-        frames.append(sub)
+            # Otter Tail County, MN HUD row →
+            # - Otter Tail County, Minnesota
+            # - Fergus Falls city, Minnesota (principal city in county)
+            if "otter tail" in countyname.lower():
+                for geo in [
+                    "Otter Tail County, Minnesota",
+                    "Fergus Falls city, Minnesota",
+                ]:
+                    rec = base.copy()
+                    rec["geo_name"] = geo
+                    acs_rows.append(rec)
+
+            # Hennepin County HUD row (part of MSP metro) →
+            # - Hennepin County, Minnesota
+            # - Minneapolis city, Minnesota
+            if "hennepin" in countyname.lower():
+                for geo in [
+                    "Hennepin County, Minnesota",
+                    "Minneapolis city, Minnesota",
+                ]:
+                    rec = base.copy()
+                    rec["geo_name"] = geo
+                    acs_rows.append(rec)
+
+            return acs_rows
+
+        expanded_records: list[dict] = []
+        for _, row in sub.iterrows():
+            expanded_records.extend(_expand_to_acs_geos(row))
+
+        if not expanded_records:
+            continue
+
+        mapped = pd.DataFrame(expanded_records)
+        frames.append(mapped)
 
     if not frames:
         return pd.DataFrame(columns=["year", "geo_name", "hud_fmr_2br"])
