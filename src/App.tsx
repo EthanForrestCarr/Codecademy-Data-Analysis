@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import { MedianHomeValueChart } from './components/MedianHomeValueChart'
+import { PriceToIncomeChart } from './components/PriceToIncomeChart'
+import { RentToIncomeChart } from './components/RentToIncomeChart'
 
 type AffordabilityMetric = {
   year: number
@@ -65,6 +68,72 @@ function App() {
         Data source: ACS 5-year estimates (2013–2023) for Fergus Falls, Otter Tail
         County, Minneapolis, and Hennepin County.
       </p>
+
+      <section>
+        <h2>How to read this page</h2>
+        <p>
+          This dashboard compares a rural county (Otter Tail and its hub city, Fergus
+          Falls) with a major metro (Hennepin County and Minneapolis). The first chart
+          shows how median home values have changed over time. The second and third
+          charts translate those prices into affordability: how many years of income it
+          takes to buy a median home, and what share of income goes to rent.
+        </p>
+        <p>
+          In general, higher price-to-income and rent-to-income lines mean housing is
+          less affordable for a typical household. This framing is designed to help
+          county staff quickly see whether local households are more or less strained
+          than peers in the Twin Cities.
+        </p>
+      </section>
+
+      <section>
+        <h2>Median Home Value Over Time</h2>
+        <p>
+          Comparing median home values across Fergus Falls, Otter Tail County, Minneapolis,
+          and Hennepin County.
+        </p>
+        <MedianHomeValueChart data={data} geographies={geographies} />
+      </section>
+
+      <section>
+        <h2>Price-to-Income Ratio</h2>
+        <p>
+          How many years of median household income it would take to buy the median home
+          (higher values indicate less affordability).
+        </p>
+        <PriceToIncomeChart data={data} geographies={geographies} />
+      </section>
+
+      <section>
+        <h2>Rent-to-Income Share</h2>
+        <p>
+          Share of median household income going to median gross rent (30%+ is typically
+          considered cost-burdened).
+        </p>
+        <RentToIncomeChart data={data} geographies={geographies} />
+      </section>
+
+      <section>
+        <h2>Key takeaways for Otter Tail County</h2>
+        <ul>
+          <li>
+            This view compares a rural hub (Fergus Falls and Otter Tail County) with a
+            major metro benchmark (Minneapolis and Hennepin County), so staff can see at a
+            glance whether local households are more or less strained than Twin Cities
+            households.
+          </li>
+          <li>
+            The price-to-income chart answers Can a typical household reasonably buy a
+            median home here? by showing how many years of income it would take. Higher
+            lines signal less affordable ownership.
+          </li>
+          <li>
+            The rent-to-income chart focuses on renters. Values approaching or exceeding
+            30% suggest cost-burdened renters and can help target renter support or
+            affordable housing efforts.
+          </li>
+        </ul>
+      </section>
 
       <section>
         <h2>Quick Peek (raw records)</h2>
