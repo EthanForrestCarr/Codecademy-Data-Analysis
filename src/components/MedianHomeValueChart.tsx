@@ -48,7 +48,7 @@ export function MedianHomeValueChart({ data, geographies }: Props) {
   }
 
   return (
-    <ResponsiveContainer width="100%" height={420}>
+    <ResponsiveContainer width="100%" height={380}>
       <LineChart data={series} margin={{ top: 20, right: 30, left: 10, bottom: 56 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" />
@@ -60,7 +60,11 @@ export function MedianHomeValueChart({ data, geographies }: Props) {
               : value
           }
         />
-        <Legend verticalAlign="bottom" height={40} wrapperStyle={{ paddingTop: 8, whiteSpace: 'normal' }} />
+        <Legend
+          verticalAlign="bottom"
+          height={40}
+          wrapperStyle={{ paddingTop: 8, whiteSpace: 'normal' }}
+        />
         {geographies.map((geo, index) => (
           <Line
             key={geo}

@@ -18,7 +18,7 @@ export function InterviewQuestions() {
     {
       question: 'Can you walk me through one key chart and what it shows?',
       answer:
-        'The price-to-income chart is a good example. Each line tracks, over time, how many years of median household income it would take to buy the median home in that place. By comparing Otter Tail and Fergus Falls to Hennepin County and Minneapolis, you can see that the metro stays more expensive in absolute terms, but the relative gap and the slope over time tell you whether rural areas are catching up or remaining more affordable. It turns an abstract price series into a more intuitive “how many years of pay” measure.',
+          'The price-to-income chart is a good example. Each line tracks, over time, how many years of median household income it would take to buy the median home in that place. By comparing Otter Tail and Fergus Falls to Hennepin County and Minneapolis, you can see that the metro stays more expensive in absolute terms, but the relative gap and the slope over time tell you whether rural areas are catching up or remaining more affordable. It turns an abstract price series into a more intuitive "how many years of pay" measure.',
     },
     {
       question: 'How would you extend this project with more time or data?',

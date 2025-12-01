@@ -26,7 +26,7 @@ export function ExploreExplainNarrative() {
         These summary statistics informed the narrative and chart design. They confirm
         that Otter Tail still enjoys a meaningful affordability advantage over the Twin
         Cities, especially for homeowners, while also highlighting that rural households
-        are not insulated from rising housing costs. The dashboard’s time-series charts
+        are not insulated from rising housing costs. The dashboard's time-series charts
         make these contrasts and trends visible to non-technical stakeholders, turning the
         exploratory findings into an accessible story.
       </p>

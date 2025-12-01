@@ -38,8 +38,8 @@ export function FmrVsRentChart({ data, geographies }: Props) {
   }
 
   return (
-  <ResponsiveContainer width="100%" height={500}>
-    <LineChart data={series} margin={{ top: 20, right: 30, left: 10, bottom: 96 }}>
+    <ResponsiveContainer width="100%" height={380}>
+      <LineChart data={series} margin={{ top: 20, right: 30, left: 10, bottom: 72 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" />
         <YAxis tickFormatter={(v) => (v == null ? '' : v.toLocaleString())} />

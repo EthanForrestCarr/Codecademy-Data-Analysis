@@ -138,7 +138,7 @@ function App() {
               Comparing median home values across Fergus Falls, Otter Tail County,
               Minneapolis, and Hennepin County.
             </p>
-            <div className="mt-4 flex-1">
+            <div className="mt-4 flex-1 min-h-[260px]">
               <MedianHomeValueChart data={data} geographies={geographies} />
             </div>
           </section>
@@ -149,7 +149,7 @@ function App() {
               How many years of median household income it would take to buy the median
               home (higher values indicate less affordability).
             </p>
-            <div className="mt-4 flex-1">
+            <div className="mt-4 flex-1 min-h-[240px]">
               <PriceToIncomeChart data={data} geographies={geographies} />
             </div>
           </section>
@@ -160,7 +160,7 @@ function App() {
               Share of median household income going to median gross rent (30%+ is
               typically considered cost-burdened).
             </p>
-            <div className="mt-4 flex-1">
+            <div className="mt-4 flex-1 min-h-[240px]">
               <RentToIncomeChart data={data} geographies={geographies} />
             </div>
           </section>
@@ -172,7 +172,7 @@ function App() {
               median gross rent. Where available, dashed lines show FMR and solid lines
               show ACS median rent for the same geography.
             </p>
-            <div className="mt-4 flex-1">
+            <div className="mt-4 flex-1 min-h-[280px]">
               <FmrVsRentChart data={data} geographies={geographies} />
             </div>
           </section>
@@ -186,7 +186,7 @@ function App() {
               income on housing costs. This is derived from ACS table B25091 by summing the
               30%+ cost brackets and dividing by the total number of owner households.
             </p>
-            <div className="mt-4 flex-1">
+            <div className="mt-4 flex-1 min-h-[240px]">
               <OwnerCostBurdenChart data={data} geographies={geographies} />
             </div>
           </section>

@@ -38,8 +38,8 @@ export function OwnerCostBurdenChart({ data, geographies }: Props) {
   }
 
   return (
-    <ResponsiveContainer width="100%" height={320}>
-      <LineChart data={series} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
+    <ResponsiveContainer width="100%" height={360}>
+      <LineChart data={series} margin={{ top: 20, right: 30, left: 10, bottom: 52 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" />
         <YAxis tickFormatter={(v) => (v == null ? '' : (v * 100).toFixed(0) + '%')} />
@@ -48,7 +48,11 @@ export function OwnerCostBurdenChart({ data, geographies }: Props) {
             typeof value === 'number' ? (value * 100).toFixed(1) + '%' : value
           }
         />
-        <Legend />
+        <Legend
+          verticalAlign="bottom"
+          height={40}
+          wrapperStyle={{ paddingTop: 8, whiteSpace: 'normal' }}
+        />
         {geographies.map((geo, index) => (
           <Line
             key={geo}
