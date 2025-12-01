@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 
-const sections = [
+type NavItem =
+  | { id: string; label: string; external?: false }
+  | { id: string; label: string; external: true; href: string }
+
+const sections: NavItem[] = [
   { id: 'summary', label: 'Summary' },
   { id: 'how-to-read', label: 'How to read' },
   { id: 'problem', label: 'Problem' },
@@ -9,7 +13,7 @@ const sections = [
   { id: 'charts', label: 'Charts' },
   { id: 'interview-questions', label: 'Interview' },
   { id: 'general-interview', label: 'General Qs', external: true, href: '/interview' },
-] as const
+]
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
