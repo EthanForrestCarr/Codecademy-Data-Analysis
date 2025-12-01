@@ -102,8 +102,14 @@ function App() {
           <ExecutiveSummary />
         </section>
 
-        <section id="how-to-read" className="mb-8 sm:mb-10">
-          <h2 className="text-xl font-semibold tracking-tight">How to read this page</h2>
+        <section id="problem-context" className="mb-8 sm:mb-10 space-y-4">
+          <h2 className="text-xl font-semibold tracking-tight">Problem &amp; Context</h2>
+          <ProblemNarrative />
+          <LoadCheckNarrative />
+        </section>
+
+        <section id="data-methods" className="mb-8 sm:mb-10">
+          <h2 className="text-xl font-semibold tracking-tight">Data &amp; Methods</h2>
           <p className="mt-2 text-sm text-slate-200">
             This dashboard compares a rural county (Otter Tail and its hub city, Fergus
             Falls) with a major metro (Hennepin County and Minneapolis). The first chart
@@ -119,121 +125,124 @@ function App() {
           </p>
         </section>
 
-        <section id="problem" className="mb-8 sm:mb-10">
-          <ProblemNarrative />
-        </section>
-
-        <section id="load-check" className="mb-8 sm:mb-10">
-          <LoadCheckNarrative />
-        </section>
-
         <section id="explore-explain" className="mb-8 sm:mb-10">
           <ExploreExplainNarrative />
         </section>
+        <section id="results" className="mb-10">
+          <h2 className="mb-4 text-xl font-semibold tracking-tight">Results</h2>
+          <div className="space-y-10 sm:space-y-12">
+            <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">Median Home Value Over Time</h3>
+              <p className="mt-1 text-sm text-slate-200">
+                Comparing median home values across Fergus Falls, Otter Tail County,
+                Minneapolis, and Hennepin County to show how quickly prices have risen in
+                each market.
+              </p>
+              <div className="mt-4 flex-1 min-h-[260px]">
+                <MedianHomeValueChart data={data} geographies={geographies} />
+              </div>
+            </section>
 
-        <section id="charts" className="space-y-10 sm:space-y-12">
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <h2 className="text-xl font-semibold tracking-tight">Median Home Value Over Time</h2>
-            <p className="mt-1 text-sm text-slate-200">
-              Comparing median home values across Fergus Falls, Otter Tail County,
-              Minneapolis, and Hennepin County.
-            </p>
-            <div className="mt-4 flex-1 min-h-[260px]">
-              <MedianHomeValueChart data={data} geographies={geographies} />
-            </div>
-          </section>
+            <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">Price-to-Income Ratio</h3>
+              <p className="mt-1 text-sm text-slate-200">
+                Shows how many years of median household income it would take to buy the
+                median home. Higher values indicate less affordable homeownership for a
+                typical household.
+              </p>
+              <div className="mt-4 flex-1 min-h-[240px]">
+                <PriceToIncomeChart data={data} geographies={geographies} />
+              </div>
+            </section>
 
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <h2 className="text-xl font-semibold tracking-tight">Price-to-Income Ratio</h2>
-            <p className="mt-1 text-sm text-slate-200">
-              How many years of median household income it would take to buy the median
-              home (higher values indicate less affordability).
-            </p>
-            <div className="mt-4 flex-1 min-h-[240px]">
-              <PriceToIncomeChart data={data} geographies={geographies} />
-            </div>
-          </section>
+            <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">Rent-to-Income Share</h3>
+              <p className="mt-1 text-sm text-slate-200">
+                Share of median household income going to median gross rent. Values near
+                or above 30% suggest cost-burdened renters who may need additional support
+                or more affordable options.
+              </p>
+              <div className="mt-4 flex-1 min-h-[240px]">
+                <RentToIncomeChart data={data} geographies={geographies} />
+              </div>
+            </section>
 
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <h2 className="text-xl font-semibold tracking-tight">Rent-to-Income Share</h2>
-            <p className="mt-1 text-sm text-slate-200">
-              Share of median household income going to median gross rent (30%+ is
-              typically considered cost-burdened).
-            </p>
-            <div className="mt-4 flex-1 min-h-[240px]">
-              <RentToIncomeChart data={data} geographies={geographies} />
-            </div>
-          </section>
+            <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">HUD Fair Market Rent vs Median Rent</h3>
+              <p className="mt-1 text-sm text-slate-200">
+                Compares HUD&apos;s 2-bedroom Fair Market Rent (FMR) benchmarks to observed
+                median gross rent. Where available, dashed lines show FMR and solid lines
+                show ACS median rent for the same geography.
+              </p>
+              <div className="mt-4 flex-1 min-h-[280px]">
+                <FmrVsRentChart data={data} geographies={geographies} />
+              </div>
+            </section>
 
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <h2 className="text-xl font-semibold tracking-tight">HUD Fair Market Rent vs Median Rent</h2>
-            <p className="mt-1 text-sm text-slate-200">
-              Comparison of HUD&apos;s 2-bedroom Fair Market Rent (FMR) benchmarks to observed
-              median gross rent. Where available, dashed lines show FMR and solid lines
-              show ACS median rent for the same geography.
-            </p>
-            <div className="mt-4 flex-1 min-h-[280px]">
-              <FmrVsRentChart data={data} geographies={geographies} />
-            </div>
-          </section>
-
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <h2 className="text-xl font-semibold tracking-tight">
-              Owner Households Cost-Burdened (30%+)
-            </h2>
-            <p className="mt-1 text-sm text-slate-200">
-              Approximate share of owner-occupied households spending at least 30% of
-              income on housing costs. This is derived from ACS table B25091 by summing the
-              30%+ cost brackets and dividing by the total number of owner households.
-            </p>
-            <div className="mt-4 flex-1 min-h-[240px]">
-              <OwnerCostBurdenChart data={data} geographies={geographies} />
-            </div>
-          </section>
-
-          <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
-            <NextStepsNarrative />
-          </section>
+            <section className="flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 p-3 sm:p-4">
+              <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
+                Owner Households Cost-Burdened (30%+)
+              </h3>
+              <p className="mt-1 text-sm text-slate-200">
+                Approximate share of owner-occupied households spending at least 30% of
+                income on housing costs, derived from ACS table B25091 by summing the
+                30%+ cost brackets and dividing by the total number of owner households.
+              </p>
+              <div className="mt-4 flex-1 min-h-[240px]">
+                <OwnerCostBurdenChart data={data} geographies={geographies} />
+              </div>
+            </section>
+          </div>
         </section>
 
         <section
-          id="interview-questions"
-          className="mt-10 space-y-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5"
+          id="next-steps"
+          className="mb-10 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5"
         >
-          <InterviewQuestions />
+          <NextStepsNarrative />
         </section>
 
         <section className="mt-10 space-y-3 rounded-xl border border-slate-800 bg-slate-900/40 p-4">
           <h2 className="text-lg font-semibold tracking-tight">Key takeaways for Otter Tail County</h2>
           <ul className="list-disc space-y-2 pl-5 text-sm text-slate-200">
             <li>
-              This view compares a rural hub (Fergus Falls and Otter Tail County) with a
-              major metro benchmark (Minneapolis and Hennepin County), so staff and
-              learners can see at a glance whether local households are more or less
-              strained than Twin Cities households.
+              Otter Tail County and Fergus Falls still offer more affordable housing than
+              Minneapolis and Hennepin County, especially for homeowners, but the gap has
+              narrowed as rural prices and costs have risen.
             </li>
             <li>
-              The price-to-income chart answers 
-              &quot;Can a typical household reasonably buy a median home here?&quot; by showing how
-              many years of income it would take. Higher lines signal less affordable
-              ownership.
+              The ownership and rental ratios show that most local households are less
+              stretched than their metro peers today, yet a meaningful share of both
+              owners and renters still face cost burdens near or above the 30 percent
+              threshold.
             </li>
             <li>
-              The rent-to-income chart focuses on renters. Values approaching or exceeding
-              30% suggest cost-burdened renters and can help target renter support or
-              affordable housing efforts.
+              Next steps for the county include pairing these high level trends with
+              parcel, permitting, and mortgage data, along with local knowledge about
+              zoning, employers, and short term rentals, to target policies where they
+              will matter most.
             </li>
           </ul>
         </section>
 
-        <section className="mt-8">
-          <h2 className="text-lg font-semibold tracking-tight">Quick Peek (raw records)</h2>
-          <p className="mt-1 text-sm text-slate-200">
-            Loaded {data.length} records for {geographies.length} geographies.
-          </p>
-          <pre className="data-preview mt-3">
-            {JSON.stringify(data.slice(0, 8), null, 2)}
-          </pre>
+        <section className="mt-10 space-y-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5">
+          <h2 className="text-lg font-semibold tracking-tight">For learners &amp; interview practice</h2>
+          <section
+            id="interview-questions"
+            className="space-y-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5"
+          >
+            <InterviewQuestions />
+          </section>
+
+          <section className="space-y-2 rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+            <h3 className="text-base font-semibold tracking-tight">Quick peek at raw records</h3>
+            <p className="mt-1 text-sm text-slate-200">
+              Loaded {data.length} records for {geographies.length} geographies.
+            </p>
+            <pre className="data-preview mt-3">
+              {JSON.stringify(data.slice(0, 8), null, 2)}
+            </pre>
+          </section>
         </section>
       </main>
     </div>
