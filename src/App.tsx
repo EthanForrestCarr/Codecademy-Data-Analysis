@@ -226,7 +226,7 @@ function App() {
         </section>
 
         <section className="mt-10 space-y-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5">
-          <h2 className="text-lg font-semibold tracking-tight">For learners &amp; interview practice</h2>
+          <h2 className="text-lg font-semibold tracking-tight">Additional context and data views</h2>
           <section
             id="interview-questions"
             className="space-y-4 rounded-xl border border-slate-800 bg-slate-900/40 p-4 sm:p-5"

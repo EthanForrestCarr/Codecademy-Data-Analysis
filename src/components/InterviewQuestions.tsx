@@ -30,10 +30,6 @@ export function InterviewQuestions() {
   return (
     <div>
       <h2 className="text-lg font-semibold tracking-tight">Interview questions &amp; answers</h2>
-      <p className="mt-1 text-sm text-slate-300">
-        These prompts are written in an interview-friendly tone so you can practice
-        explaining the project, your data choices, and your analysis decisions out loud.
-      </p>
       <div className="mt-4 space-y-4">
         {qa.map((item, idx) => (
           <article

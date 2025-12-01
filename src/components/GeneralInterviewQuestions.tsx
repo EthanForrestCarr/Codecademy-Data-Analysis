@@ -302,14 +302,7 @@ const sections: QASection[] = [
 export function GeneralInterviewQuestions() {
   return (
     <div>
-      <h2 className="text-lg font-semibold tracking-tight">
-        General data analyst interview questions
-      </h2>
-      <p className="mt-1 text-sm text-slate-300">
-        Use these to practice answering common data analysis interview questions out
-        loud.
-      </p>
-      <div className="mt-4 space-y-8">
+      <div className="space-y-8">
         {sections.map((section) => (
           <section key={section.id} aria-labelledby={section.id}>
             <div className="mb-2">
